@@ -6,3 +6,4 @@ folium
 xarray
 netCDF4
 matplotlib
+localtileserver
