@@ -11,7 +11,7 @@ st.markdown(
 )
 
 # URLs das camadas
-vetorial_url = "data/polos_wgs.geojson"  # Substitua pela URL do vetor
+vetorial_url = "polos_wgs.geojson"  # Substitua pela URL do vetor
 #raster_url = "https://seusite.com/data/camada.tif"        # Substitua pela URL do raster
 
 # Coordenadas centrais do mapa e nível de zoom definidos no código
