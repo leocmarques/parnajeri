@@ -70,6 +70,16 @@ if raster_info:
 
 
 
+with rasterio.open("arvore_wgs84.tif") as src:
+    bounds = src.bounds
+    center_lat = (bounds.top + bounds.bottom) / 2
+    center_lon = (bounds.left + bounds.right) / 2
+
+m = leafmap.Map(center=[center_lat, center_lon], zoom=12)
+
+
+
+
 
 #convert.mbtiles_to_pmtiles("arvore.mbtiles", "arvore.pmtiles",maxzoom=20)
 #m.add_pmtiles("arvore.pmtiles", name="Árvore", attribution="Dados PMTiles")
