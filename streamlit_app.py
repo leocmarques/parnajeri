@@ -29,7 +29,7 @@ m.add_geojson("polos_wgs.geojson", layer_name="Polos")
 m.add_geojson("pontos.geojson", layer_name="Pontos")
 arvore = "arvore_wgs84.tif"
 arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_wgs84.tif", "arvore_wgs84.tif")
-m.add_raster("arvore_wgs84.tif", layer_name="Árvore da Preguiça")
+m.add_raster("arvore_wgs84.tif",bands=[1, 2, 3], layer_name="Árvore da Preguiça")
 
 
 #convert.mbtiles_to_pmtiles("arvore.mbtiles", "arvore.pmtiles",maxzoom=20)
