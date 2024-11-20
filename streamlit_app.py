@@ -47,13 +47,17 @@ m.add_geojson("polos_wgs.geojson", layer_name="Polos")
 #        m.add_marker(location=(coord[1], coord[0]), popup=popup_html)
 
 # Adicionar camada raster ao mapa
-try:
-    m.add_raster("https://api.maptiler.com/tiles/7122380a-6c07-4aa6-9266-67b3be263a1b/{z}/{x}/{y}.png?key=siZ1uTKnlAee8SLZokfo", layer_name="Árvore da Preguiça")
+#try:
+    #m.add_raster("https://api.maptiler.com/tiles/7122380a-6c07-4aa6-9266-67b3be263a1b/{z}/{x}/{y}.png?key=siZ1uTKnlAee8SLZokfo", layer_name="Árvore da Preguiça")
     #st.write("Camada raster carregada com sucesso.")
-except Exception as e:
-    st.error(f"Erro ao carregar a camada raster: {e}")
+#except Exception as e:
+    #st.error(f"Erro ao carregar a camada raster: {e}")
 
-
+m.add_tile_layer(
+    url="https://api.maptiler.com/tiles/7122380a-6c07-4aa6-9266-67b3be263a1b/{z}/{x}/{y}.png?key=siZ1uTKnlAee8SLZokfo",
+    name="Árvore da Preguiça",
+    attribution="MapTiler"
+)
 
 # Exibir o mapa
 m.to_streamlit()
