@@ -75,8 +75,8 @@ with rasterio.open("arvore_wgs84.tif") as src:
     center_lat = (bounds.top + bounds.bottom) / 2
     center_lon = (bounds.left + bounds.right) / 2
 
-m = leafmap.Map(center=[center_lat, center_lon], zoom=12)
-
+m = leafmap.Map(center=[center_lat, center_lon], zoom=18)
+m.add_raster("arvore_wgs84.tif", layer_name="Árvore da Preguiça")
 
 
 
