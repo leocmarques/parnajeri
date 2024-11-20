@@ -16,7 +16,7 @@ vetorial_url = "/polos_wgs.geojson"  # Substitua pela URL do vetor
 
 # Coordenadas centrais do mapa e nível de zoom definidos no código
 map_center = [-2.8142, -40.4923] 
-zoom_level = 5  # Nível de zoom inicial do mapa
+zoom_level = 15  # Nível de zoom inicial do mapa
 
 # Carregar camada vetorial
 try:
