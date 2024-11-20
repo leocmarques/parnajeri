@@ -31,7 +31,7 @@ st.subheader("Mapa Interativo")
 m = leafmap.Map(center=map_center, zoom=zoom_level, basemap="OpenStreetMap")
 
 m.add_geojson("polos_wgs.geojson", layer_name="Polos")
-m.add_raster("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif", layer_name="Ortofoto - Árvore da Preguiça")
+#m.add_raster("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif", layer_name="Ortofoto - Árvore da Preguiça")
 
 
 # Adicionar camada vetorial com popups personalizados
@@ -52,6 +52,21 @@ try:
     st.write("Camada raster carregada com sucesso.")
 except Exception as e:
     st.error(f"Erro ao carregar a camada raster: {e}")
+
+
+import rasterio
+import matplotlib.pyplot as plt
+
+try:
+    with rasterio.open("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif") as src:
+        data = src.read(1)  # Primeira banda
+        plt.imshow(data, cmap="gray")
+        plt.title("Visualização do Raster")
+        plt.colorbar()
+        st.pyplot(plt)
+except Exception as e:
+    st.error(f"Erro ao renderizar o raster: {e}")
+
 
 # Exibir o mapa
 m.to_streamlit()
