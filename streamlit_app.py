@@ -30,13 +30,45 @@ arvore = "arvore_wgs84.tif"
 arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_wgs84.tif", "arvore_wgs84.tif")
 m.add_raster("arvore_wgs84.tif", layer_name="Árvore da Preguiça")
 
-try:
-    with rasterio.open("arvore_wgs84.tif") as src:
-        print("Raster carregado com sucesso!")
-        print("Bounds:", src.bounds)
-        print("SRC:", src.crs)
-except Exception as e:
-    print(f"Erro ao carregar o raster: {e}")
+# Função para analisar o raster
+def analyze_raster(file_path):
+    try:
+        with rasterio.open(file_path) as src:
+            # Coletar informações do raster
+            bounds = src.bounds
+            crs = src.crs
+            width = src.width
+            height = src.height
+            band_count = src.count
+            data_type = src.dtypes[0]  # Tipo de dado da primeira banda
+
+            # Criar um dicionário com as informações
+            raster_info = {
+                "Bounds (Extent)": bounds,
+                "CRS (Sistema de Referência)": crs,
+                "Largura (Pixels)": width,
+                "Altura (Pixels)": height,
+                "Quantidade de Bandas": band_count,
+                "Tipo de Dado": data_type
+            }
+            return raster_info
+    except Exception as e:
+        st.error(f"Erro ao analisar o raster: {e}")
+        return None
+
+# Caminho para o raster
+raster_path = "arvore_wgs84.tif"
+
+# Analisar o raster
+raster_info = analyze_raster(raster_path)
+
+# Exibir os resultados no Streamlit
+if raster_info:
+    st.subheader("Informações do Raster")
+    for key, value in raster_info.items():
+        st.write(f"**{key}:** {value}")
+
+
 
 
 #convert.mbtiles_to_pmtiles("arvore.mbtiles", "arvore.pmtiles",maxzoom=20)
