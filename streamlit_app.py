@@ -3,7 +3,6 @@ import geopandas as gpd
 import leafmap.foliumap as leafmap
 import rasterio
 import os
-import subprocess
 import pmtiles.convert as convert
 
 
@@ -29,7 +28,15 @@ m.add_geojson("polos_wgs.geojson", layer_name="Polos")
 m.add_geojson("pontos.geojson", layer_name="Pontos")
 arvore = "arvore_wgs84.tif"
 arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_wgs84.tif", "arvore_wgs84.tif")
-m.add_raster("arvore_wgs84.tif",bands=[1, 2, 3], layer_name="Árvore da Preguiça")
+m.add_raster("arvore_wgs84.tif", layer_name="Árvore da Preguiça")
+
+try:
+    with rasterio.open("arvore_wgs84.tif") as src:
+        print("Raster carregado com sucesso!")
+        print("Bounds:", src.bounds)
+        print("SRC:", src.crs)
+except Exception as e:
+    print(f"Erro ao carregar o raster: {e}")
 
 
 #convert.mbtiles_to_pmtiles("arvore.mbtiles", "arvore.pmtiles",maxzoom=20)
