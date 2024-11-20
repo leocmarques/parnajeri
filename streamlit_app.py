@@ -19,6 +19,7 @@ m = leafmap.Map(center=map_center, zoom=zoom_level, basemap="OpenStreetMap")
 
 m.add_geojson("polos_wgs.geojson", layer_name="Polos")
 m.add_geojson("pontos.geojson", layer_name="Pontos")
+arvore = "arvore_da_preguica_wgs.tif"
 arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif", "arvore_da_preguica_wgs.tif")
 m.add_raster(arvore, layer_name="Ortofoto - Árvore da Preguiça")
 
