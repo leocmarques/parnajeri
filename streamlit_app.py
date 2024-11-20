@@ -59,5 +59,25 @@ m.add_tile_layer(
     attribution="MapTiler"
 )
 
+# Obter informações do TileJSON
+response = requests.get("https://api.maptiler.com/tiles/7122380a-6c07-4aa6-9266-67b3be263a1b/tiles.json?key=siZ1uTKnlAee8SLZokfo")
+if response.status_code == 200:
+    tilejson_data = response.json()
+    raster_xyz_url = tilejson_data["tiles"][0]  # Extrai a URL dos tiles do TileJSON
+else:
+    st.error(f"Erro ao carregar TileJSON: {response.status_code}")
+
+# Criar o mapa
+m = leafmap.Map(center=[-15.7942, -47.8822], zoom=10)
+
+# Adicionar camada de tiles XYZ (a partir do TileJSON)
+if 'raster_xyz_url' in locals():
+    m.add_tile_layer(
+        url=raster_xyz_url,
+        name="Raster Layer",
+        attribution="Servidor TileJSON"
+    )
+
+
 # Exibir o mapa
 m.to_streamlit()
