@@ -32,8 +32,8 @@ arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_da_preguica
 m.add_raster("arvore_da_preguica_wgs.tif", layer_name="Árvore da Preguiça")
 
 
-convert.mbtiles_to_pmtiles("arvore.mbtiles", "pmtiles_arvore.pmtiles")
-m.add_pmtiles("output.pmtiles", name="Árvore", attribution="Dados PMTiles")
+convert.mbtiles_to_pmtiles("arvore.mbtiles", "arvore.pmtiles")
+m.add_pmtiles("arvore.pmtiles", name="Árvore", attribution="Dados PMTiles")
 
 # Adicionar camada vetorial com popups personalizados
 #if 'gdf' in locals():
