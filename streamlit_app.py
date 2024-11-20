@@ -31,7 +31,7 @@ st.subheader("Mapa Interativo")
 m = leafmap.Map(center=map_center, zoom=zoom_level, basemap="OpenStreetMap")
 
 m.add_geojson("polos_wgs.geojson", layer_name="Polos")
-m.add_raster("arvore_da_preguica.tif", layer_name="Ortofoto - Árvore da Preguiça")
+m.add_raster("https://ambientis.eng.br/jeri/arvore_da_preguica.tif", layer_name="Ortofoto - Árvore da Preguiça")
 
 
 # Adicionar camada vetorial com popups personalizados
