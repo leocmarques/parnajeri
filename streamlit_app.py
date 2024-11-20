@@ -28,8 +28,8 @@ m.add_xyz_service("qms.Google Satellite")
 m.add_geojson("polos_wgs.geojson", layer_name="Polos")
 m.add_geojson("pontos.geojson", layer_name="Pontos")
 arvore = "arvore_da_preguica_wgs.tif"
-arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_wgs84.tif", "arvore_da_preguica_wgs.tif")
-m.add_raster("arvore_da_preguica_wgs.tif", layer_name="Árvore da Preguiça")
+arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_wgs84.tif", "arvore_wgs84.tif")
+m.add_raster("arvore_wgs84.tif", layer_name="Árvore da Preguiça")
 
 
 #convert.mbtiles_to_pmtiles("arvore.mbtiles", "arvore.pmtiles",maxzoom=20)
