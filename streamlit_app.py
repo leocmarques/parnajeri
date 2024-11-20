@@ -32,7 +32,8 @@ m = leafmap.Map(center=map_center, zoom=zoom_level, basemap="OpenStreetMap")
 
 m.add_geojson("polos_wgs.geojson", layer_name="Polos")
 m.add_geojson("pontos.geojson", layer_name="Pontos")
-#m.add_raster("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif", layer_name="Ortofoto - Árvore da Preguiça")
+arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif", "arvore.tif")
+m.add_raster(arvore, layer_name="Ortofoto - Árvore da Preguiça")
 
 
 # Adicionar camada vetorial com popups personalizados
@@ -48,17 +49,17 @@ m.add_geojson("pontos.geojson", layer_name="Pontos")
 #        m.add_marker(location=(coord[1], coord[0]), popup=popup_html)
 
 # Adicionar camada raster ao mapa
-#try:
-    #m.add_raster("https://api.maptiler.com/tiles/7122380a-6c07-4aa6-9266-67b3be263a1b/{z}/{x}/{y}.png?key=siZ1uTKnlAee8SLZokfo", layer_name="Árvore da Preguiça")
+try:
+    m.add_raster("https://api.maptiler.com/tiles/7122380a-6c07-4aa6-9266-67b3be263a1b/{z}/{x}/{y}.png?key=siZ1uTKnlAee8SLZokfo", layer_name="Árvore da Preguiça")
     #st.write("Camada raster carregada com sucesso.")
-#except Exception as e:
-    #st.error(f"Erro ao carregar a camada raster: {e}")
+except Exception as e:
+    st.error(f"Erro ao carregar a camada raster: {e}")
 
-m.add_tile_layer(
-    url="https://api.maptiler.com/tiles/7122380a-6c07-4aa6-9266-67b3be263a1b/{z}/{x}/{y}.png?key=siZ1uTKnlAee8SLZokfo",
-    name="Árvore da Preguiça",
-    attribution="MapTiler"
-)
+#m.add_tile_layer(
+#    url="https://api.maptiler.com/tiles/7122380a-6c07-4aa6-9266-67b3be263a1b/{z}/{x}/{y}.png?key=siZ1uTKnlAee8SLZokfo",
+#    name="Árvore da Preguiça",
+#    attribution="MapTiler"
+#)
 
 
 # Exibir o mapa
