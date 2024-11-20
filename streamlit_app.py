@@ -18,6 +18,8 @@ zoom_level = 11  # Nível de zoom inicial do mapa
 st.subheader("Mapa Interativo")
 m = leafmap.Map(center=map_center, zoom=zoom_level, basemap="OpenStreetMap")
 
+# Adicionar basemap do Google Satellite
+m.add_xyz_service("qms.Google Satellite")
 
 m.add_geojson("polos_wgs.geojson", layer_name="Polos")
 m.add_geojson("pontos.geojson", layer_name="Pontos")
@@ -38,7 +40,6 @@ m.add_raster("arvore_da_preguica_wgs.tif", layer_name="Árvore da Preguiça")
 #        """
 #        m.add_marker(location=(coord[1], coord[0]), popup=popup_html)
 
-m.add_xyz_service("qms.Google Satellite")
 
 # Exibir o mapa
 m.to_streamlit()
