@@ -48,24 +48,11 @@ m.add_geojson("polos_wgs.geojson", layer_name="Polos")
 
 # Adicionar camada raster ao mapa
 try:
-    m.add_raster("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif", layer_name="Ortofoto - Árvore da Preguiça")
+    m.add_raster("https://api.maptiler.com/tiles/7122380a-6c07-4aa6-9266-67b3be263a1b/{z}/{x}/{y}.png?key=siZ1uTKnlAee8SLZokfo", layer_name="Ortofoto - Árvore da Preguiça")
     st.write("Camada raster carregada com sucesso.")
 except Exception as e:
     st.error(f"Erro ao carregar a camada raster: {e}")
 
-
-import rasterio
-import matplotlib.pyplot as plt
-
-try:
-    with rasterio.open("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif") as src:
-        data = src.read(1)  # Primeira banda
-        plt.imshow(data, cmap="gray")
-        plt.title("Visualização do Raster")
-        plt.colorbar()
-        st.pyplot(plt)
-except Exception as e:
-    st.error(f"Erro ao renderizar o raster: {e}")
 
 
 # Exibir o mapa
