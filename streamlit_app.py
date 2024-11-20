@@ -31,6 +31,7 @@ st.subheader("Mapa Interativo")
 m = leafmap.Map(center=map_center, zoom=zoom_level, basemap="OpenStreetMap")
 
 m.add_geojson("polos_wgs.geojson", layer_name="Polos")
+m.add_geojson("pontos.geojson", layer_name="Pontos")
 #m.add_raster("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif", layer_name="Ortofoto - Árvore da Preguiça")
 
 
