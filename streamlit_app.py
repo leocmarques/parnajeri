@@ -1,6 +1,7 @@
 import streamlit as st
 import geopandas as gpd
 import leafmap.foliumap as leafmap
+import rasterio
 
 # Títulos e descrição
 st.title("WebGIS Parque Nacional de Jericoacoara")
