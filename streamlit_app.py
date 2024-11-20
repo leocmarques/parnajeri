@@ -11,12 +11,12 @@ st.markdown(
 )
 
 # URLs das camadas
-vetorial_url = "polos_wgs.geojson"  # Substitua pela URL do vetor
-raster_url = "https://seusite.com/data/camada.tif"        # Substitua pela URL do raster
+vetorial_url = "/polos_wgs.geojson"  # Substitua pela URL do vetor
+#raster_url = "https://seusite.com/data/camada.tif"        # Substitua pela URL do raster
 
 # Coordenadas centrais do mapa e nível de zoom definidos no código
 map_center = [-2.8142, -40.4923] 
-zoom_level = 10  # Nível de zoom inicial do mapa
+zoom_level = 5  # Nível de zoom inicial do mapa
 
 # Carregar camada vetorial
 try:
@@ -43,11 +43,11 @@ if 'gdf' in locals():
         m.add_marker(location=(coord[1], coord[0]), popup=popup_html)
 
 # Adicionar camada raster ao mapa
-try:
-    m.add_raster(raster_url, layer_name="Camada Raster")
-    st.write("Camada raster carregada com sucesso.")
-except Exception as e:
-    st.error(f"Erro ao carregar a camada raster: {e}")
+#try:
+#    m.add_raster(raster_url, layer_name="Camada Raster")
+#    st.write("Camada raster carregada com sucesso.")
+#except Exception as e:
+#    st.error(f"Erro ao carregar a camada raster: {e}")
 
 # Exibir o mapa
 m.to_streamlit(height=600)
