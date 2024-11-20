@@ -38,6 +38,7 @@ m.add_raster("arvore_da_preguica_wgs.tif", layer_name="Árvore da Preguiça")
 #        """
 #        m.add_marker(location=(coord[1], coord[0]), popup=popup_html)
 
+m.add_xyz_service("qms.Google Satellite")
 
 # Exibir o mapa
 m.to_streamlit()
