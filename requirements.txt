@@ -8,4 +8,3 @@ netCDF4
 matplotlib
 localtileserver
 pmtiles
-pygdal==3.6.2.*
