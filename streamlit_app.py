@@ -2,6 +2,10 @@ import streamlit as st
 import geopandas as gpd
 import leafmap.foliumap as leafmap
 import rasterio
+import os
+import subprocess
+import pmtiles.convert as convert
+
 
 # Títulos e descrição
 st.title("WebGIS Parque Nacional de Jericoacoara")
@@ -27,9 +31,36 @@ arvore = "arvore_da_preguica_wgs.tif"
 arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif", "arvore_da_preguica_wgs.tif")
 m.add_raster("arvore_da_preguica_wgs.tif", layer_name="Árvore da Preguiça")
 
-import pmtiles.convert as convert
-convert.mbtiles_to_pmtiles("arvore.mbtiles", "pmtiles_arvore.pmtiles",maxzoom=20)
-m.add_pmtiles("pmtiles_arvore.pmtiles", name="Árvore", attribution="Dados PMTiles")
+
+# Caminhos dos arquivos
+geotiff_file = "arvore_da_preguica_wgs.tif"  # Substitua pelo caminho do seu GeoTIFF
+mbtiles_file = "output.mbtiles"  # Arquivo intermediário MBTiles
+pmtiles_file = "output.pmtiles"  # Arquivo final PMTiles
+
+try:
+    # Passo 1: Converter GeoTIFF para MBTiles usando gdal2tiles.py
+    print("Convertendo GeoTIFF para MBTiles...")
+    subprocess.run([
+        "gdal2tiles.py",
+        "--xyz",
+        geotiff_file,
+        mbtiles_file
+    ], check=True)
+
+    # Passo 2: Converter MBTiles para PMTiles
+    print("Convertendo MBTiles para PMTiles...")
+    convert.mbtiles_to_pmtiles(mbtiles_file, pmtiles_file)
+    print(f"Conversão bem-sucedida: {pmtiles_file}")
+
+except subprocess.CalledProcessError as e:
+    print(f"Erro durante a conversão de GeoTIFF para MBTiles: {e}")
+except Exception as e:
+    print(f"Erro durante a conversão de MBTiles para PMTiles: {e}")
+
+
+
+#convert.mbtiles_to_pmtiles("arvore.mbtiles", "pmtiles_arvore.pmtiles",maxzoom=20)
+m.add_pmtiles("output.pmtiles", name="Árvore", attribution="Dados PMTiles")
 
 # Adicionar camada vetorial com popups personalizados
 #if 'gdf' in locals():
