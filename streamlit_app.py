@@ -27,8 +27,10 @@ m.add_xyz_service("qms.Google Satellite")
 m.add_geojson("polos_wgs.geojson", layer_name="Polos")
 m.add_geojson("pontos.geojson", layer_name="Pontos")
 arvore = "arvore_wgs84.tif"
+dem_url = "https://open.gishub.org/data/raster/srtm90.tif"
+leafmap.download_file(dem_url, unzip=False)
 arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_wgs84.tif", "arvore_wgs84.tif")
-m.add_raster("arvore_wgs84.tif", layer_name="Árvore da Preguiça")
+m.add_raster("arvore_wgs84.tif", bands=[1, 2, 3], layer_name="Árvore da Preguiça")
 
 # Função para analisar o raster
 def analyze_raster(file_path):
