@@ -21,7 +21,7 @@ m.add_geojson("polos_wgs.geojson", layer_name="Polos")
 m.add_geojson("pontos.geojson", layer_name="Pontos")
 arvore = "arvore_da_preguica_wgs.tif"
 arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif", "arvore_da_preguica_wgs.tif")
-m.add_raster(arvore, layer_name="Ortofoto - Árvore da Preguiça")
+m.add_raster("/mount/src/parnajeri/arvore_da_preguica_wgs.tif", layer_name="Ortofoto - Árvore da Preguiça")
 
 
 # Adicionar camada vetorial com popups personalizados
