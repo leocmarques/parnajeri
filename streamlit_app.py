@@ -31,55 +31,7 @@ dem_url = "https://open.gishub.org/data/raster/srtm90.tif"
 leafmap.download_file(dem_url, unzip=False)
 arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_wgs84.tif", "arvore_wgs84.tif")
 m.add_raster("arvore_wgs84.tif", bands=[1, 2, 3], layer_name="Árvore da Preguiça")
-
-# Função para analisar o raster
-def analyze_raster(file_path):
-    try:
-        with rasterio.open(file_path) as src:
-            # Coletar informações do raster
-            bounds = src.bounds
-            crs = src.crs
-            width = src.width
-            height = src.height
-            band_count = src.count
-            data_type = src.dtypes[0]  # Tipo de dado da primeira banda
-
-            # Criar um dicionário com as informações
-            raster_info = {
-                "Bounds (Extent)": bounds,
-                "CRS (Sistema de Referência)": crs,
-                "Largura (Pixels)": width,
-                "Altura (Pixels)": height,
-                "Quantidade de Bandas": band_count,
-                "Tipo de Dado": data_type
-            }
-            return raster_info
-    except Exception as e:
-        st.error(f"Erro ao analisar o raster: {e}")
-        return None
-
-# Caminho para o raster
-raster_path = "arvore_wgs84.tif"
-
-# Analisar o raster
-raster_info = analyze_raster(raster_path)
-
-# Exibir os resultados no Streamlit
-if raster_info:
-    st.subheader("Informações do Raster")
-    for key, value in raster_info.items():
-        st.write(f"**{key}:** {value}")
-
-
-
-with rasterio.open("arvore_wgs84.tif") as src:
-    bounds = src.bounds
-    center_lat = (bounds.top + bounds.bottom) / 2
-    center_lon = (bounds.left + bounds.right) / 2
-
-m = leafmap.Map(center=[center_lat, center_lon], zoom=18)
-m.add_raster("arvore_wgs84.tif", layer_name="Árvore da Preguiça")
-
+m.add_raster("srtm90.tif", layer_name="DEM")
 
 
 
