@@ -11,11 +11,11 @@ st.markdown(
 )
 
 # URLs das camadas
-vetorial_url = "https://ambientis.eng.br/jeri/polos.geojson"  # Substitua pela URL do vetor
+vetorial_url = "https://ambientis.eng.br/jeri/polos_wgs.geojson"  # Substitua pela URL do vetor
 raster_url = "https://seusite.com/data/camada.tif"        # Substitua pela URL do raster
 
 # Coordenadas centrais do mapa e nível de zoom definidos no código
-map_center = [-15.7942, -47.8822]  # Exemplo: Brasília, Brasil
+map_center = [-2.8142, -40.4923] 
 zoom_level = 10  # Nível de zoom inicial do mapa
 
 # Carregar camada vetorial
