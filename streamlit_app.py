@@ -47,11 +47,11 @@ m.add_raster("arvore_da_preguica.tif", layer_name="Ortofoto - √Årvore da Pregui√
 #        m.add_marker(location=(coord[1], coord[0]), popup=popup_html)
 
 # Adicionar camada raster ao mapa
-#try:
-#    m.add_raster(raster_url, layer_name="Camada Raster")
-#    st.write("Camada raster carregada com sucesso.")
-#except Exception as e:
-#    st.error(f"Erro ao carregar a camada raster: {e}")
+try:
+    m.add_raster(raster_url, layer_name="Camada Raster")
+    st.write("Camada raster carregada com sucesso.")
+except Exception as e:
+    st.error(f"Erro ao carregar a camada raster: {e}")
 
 # Exibir o mapa
 m.to_streamlit()
