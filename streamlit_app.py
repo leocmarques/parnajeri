@@ -10,19 +10,30 @@ st.markdown(
     """)
 
 # Coordenadas centrais do mapa e nível de zoom definidos no código
-map_center = [-2.8142, -40.4923] 
-zoom_level = 11  # Nível de zoom inicial do mapa
+#map_center = [-2.8142, -40.4923] 
+#zoom_level = 11  # Nível de zoom inicial do mapa
 
 # Criar o mapa
-st.subheader("Mapa Interativo")
-m = leafmap.Map(center=map_center, zoom=zoom_level, basemap="OpenStreetMap")
+#st.subheader("Mapa Interativo")
+#m = leafmap.Map(center=map_center, zoom=zoom_level, basemap="OpenStreetMap")
 
-m.add_geojson("polos_wgs.geojson", layer_name="Polos")
-m.add_geojson("pontos.geojson", layer_name="Pontos")
+
+
+
+#m.add_geojson("polos_wgs.geojson", layer_name="Polos")
+#m.add_geojson("pontos.geojson", layer_name="Pontos")
 arvore = "arvore_da_preguica_wgs.tif"
 arvore = leafmap.download_file("https://ambientis.eng.br/jeri/arvore_da_preguica_wgs.tif", "arvore_da_preguica_wgs.tif")
-m.add_raster("arvore_da_preguica_wgs.tif", layer_name="Árvore da Preguiça")
+#m.add_raster("arvore_da_preguica_wgs.tif", layer_name="Árvore da Preguiça")
 
+# Calcular os bounds do raster
+with rasterio.open(arvore) as src:
+    bounds = src.bounds  # Obtém os limites do raster
+    center = [(bounds.top + bounds.bottom) / 2, (bounds.left + bounds.right) / 2]  # Centro
+
+# Criar o mapa ajustado aos bounds
+zoom = 10  # Ajuste o zoom conforme necessário
+m = leafmap.Map(center=center, zoom=zoom)
 
 # Adicionar camada vetorial com popups personalizados
 #if 'gdf' in locals():
