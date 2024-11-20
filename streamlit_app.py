@@ -33,8 +33,10 @@ with rasterio.open(arvore) as src:
     center = [(bounds.top + bounds.bottom) / 2, (bounds.left + bounds.right) / 2]  # Centro
 
 # Criar o mapa ajustado aos bounds
-zoom = 10  # Ajuste o zoom conforme necessário
+zoom = 18  # Ajuste o zoom conforme necessário
 m = leafmap.Map(center=center, zoom=zoom)
+m.add_raster("arvore_da_preguica_wgs.tif", layer_name="Árvore da Preguiça")
+
 
 # Adicionar camada vetorial com popups personalizados
 #if 'gdf' in locals():
