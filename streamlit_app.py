@@ -14,6 +14,10 @@ st.markdown(
 vetorial_url = "https://ambientis.eng.br/jeri/polos.geojson"  # Substitua pela URL do vetor
 raster_url = "https://seusite.com/data/camada.tif"        # Substitua pela URL do raster
 
+# Coordenadas centrais do mapa e nível de zoom definidos no código
+map_center = [-15.7942, -47.8822]  # Exemplo: Brasília, Brasil
+zoom_level = 10  # Nível de zoom inicial do mapa
+
 # Carregar camada vetorial
 try:
     gdf = gpd.read_file(vetorial_url)
@@ -22,17 +26,9 @@ try:
 except Exception as e:
     st.error(f"Erro ao carregar a camada vetorial: {e}")
 
-# Configurações do mapa no sidebar
-st.sidebar.header("Configurações do Mapa")
-default_center = [0, 0]
-center_lat = st.sidebar.number_input("Latitude do centro do mapa", value=default_center[0])
-center_lon = st.sidebar.number_input("Longitude do centro do mapa", value=default_center[1])
-zoom_level = st.sidebar.slider("Nível de zoom", min_value=2, max_value=18, value=5)
-basemap_options = ["OpenStreetMap", "Satellite", "Terrain", "CartoDB.DarkMatter"]
-basemap_choice = st.sidebar.selectbox("Escolher basemap", basemap_options)
-
 # Criar o mapa
-m = leafmap.Map(center=(center_lat, center_lon), zoom=zoom_level, basemap=basemap_choice)
+st.subheader("Mapa Interativo")
+m = leafmap.Map(center=map_center, zoom=zoom_level, basemap="OpenStreetMap")
 
 # Adicionar camada vetorial com popups personalizados
 if 'gdf' in locals():
