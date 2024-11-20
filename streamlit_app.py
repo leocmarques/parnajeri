@@ -53,4 +53,4 @@ m.add_geojson("polos_wgs.geojson", layer_name="Polos")
 #    st.error(f"Erro ao carregar a camada raster: {e}")
 
 # Exibir o mapa
-m.to_streamlit(height=600)
+m.to_streamlit()
